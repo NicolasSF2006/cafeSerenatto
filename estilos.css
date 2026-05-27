@@ -1,18 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&display=swap');
+/*
+  Fonte principal do projeto.
 
+  Barlow é usada para manter uma aparência moderna e próxima
+  da identidade visual da cafeteria.
+*/
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&display=swap");
+
+/*
+  Variáveis de cor do projeto.
+
+  Elas ficam no body porque o tema claro/escuro do Bootstrap
+  também é aplicado no body através do atributo data-bs-theme.
+*/
 body {
-  --bege: #E6E0D6;
-  --marrom-escuro: #816D4F;
-  --marrom-claro: #B29463;
-  height: 4000px;
+  --bege: #e6e0d6;
+  --marrom-escuro: #816d4f;
+  --marrom-claro: #b29463;
+
+  font-family: "Barlow", sans-serif;
 }
 
-input[type=checkbox] {
+/* =========================
+   Inputs e controles
+   ========================= */
+
+/*
+  Personaliza checkboxes do Bootstrap.
+
+  Usado principalmente no switch de modo noturno e no checkbox
+  do formulário de contato.
+*/
+input[type="checkbox"] {
   border: 2px solid var(--marrom-claro);
   box-shadow: none;
 }
 
-input[type=checkbox]:checked,
+/*
+  Estado marcado e estado de foco dos checkboxes.
+
+  Remove a sombra padrão do Bootstrap e aplica a cor da identidade visual.
+*/
+input[type="checkbox"]:checked,
 input[type="checkbox"]:focus {
   background-color: var(--marrom-claro);
   border-color: var(--marrom-claro);
@@ -20,50 +48,111 @@ input[type="checkbox"]:focus {
   outline: none;
 }
 
+/* =========================
+   Logos do header
+   ========================= */
+
+/*
+  Logo principal exibida em telas maiores.
+*/
 .logo-principal {
-    display: block;
-    position:static;
+  display: block;
+  position: static;
 }
 
+/*
+  Logo mobile começa escondida.
+
+  Ela aparece apenas em telas menores, dentro da media query.
+*/
 .logo-principal__mobile {
   display: none;
   position: absolute;
 }
 
+/* =========================
+   Banners
+   ========================= */
+
+/*
+  Imagem do primeiro banner.
+*/
 .banner-1 {
-  background-image: url(./assets/banner-1.png);
+  background-image: url("./assets/banner-1.png");
 }
 
+/*
+  Estilo base dos banners.
+
+  background-attachment: fixed cria o efeito parallax no desktop.
+  Em mobile, isso será desativado para evitar bugs de renderização.
+*/
 .banner {
   width: 100%;
   height: 50vw;
+  min-height: 320px;
   background-repeat: no-repeat;
-  background-size: cover ;
+  background-size: cover;
   background-position: center;
   background-attachment: fixed;
 }
 
+/*
+  Caixa de texto sobre o banner.
+
+  Essa variável altera a opacidade do fundo usado pelas classes
+  bg-body-secondary do Bootstrap.
+*/
 .banner-titulo {
-  --bs-bg-opacity: .2;
+  --bs-bg-opacity: 0.2;
 }
 
-.botao-padrao{
-  background-color: var(--marrom-claro);
-  color: black;
-}
-
-.botao-padrao:hover{
-  background-color: var(--marrom-escuro);
-}
-
+/*
+  Imagem do segundo banner.
+*/
 .banner-2 {
-  background-image: url(./assets/banner-2.png);
+  background-image: url("./assets/banner-2.png");
 }
 
+/*
+  Imagem do terceiro banner.
+*/
 .banner-3 {
-  background-image: url(./assets/banner-3.png);
+  background-image: url("./assets/banner-3.png");
 }
 
+/* =========================
+   Botões
+   ========================= */
+
+/*
+  Botão padrão do projeto.
+
+  Reutilizado em cards, offcanvas, modais e formulário.
+*/
+.botao-padrao {
+  background-color: var(--marrom-claro);
+  color: #000;
+  border: none;
+}
+
+/*
+  Estado hover do botão padrão.
+
+  No hover, usa marrom escuro e texto claro para manter contraste.
+*/
+.botao-padrao:hover {
+  background-color: var(--marrom-escuro);
+  color: #fff;
+}
+
+/* =========================
+   Range do formulário
+   ========================= */
+
+/*
+  Personaliza o marcador do input range no Chrome, Edge e Safari.
+*/
 .nivel-satisfacao__range::-webkit-slider-thumb {
   background-color: var(--marrom-claro);
 }
@@ -72,48 +161,119 @@ input[type="checkbox"]:focus {
   background-color: var(--marrom-escuro);
 }
 
+/*
+  Personaliza o marcador do input range no Firefox.
+*/
+.nivel-satisfacao__range::-moz-range-thumb {
+  background-color: var(--marrom-claro);
+  border: none;
+}
+
+.nivel-satisfacao__range::-moz-range-thumb:hover {
+  background-color: var(--marrom-escuro);
+}
+
+/* =========================
+   Rodapé
+   ========================= */
+
 .rodape {
   background-color: var(--marrom-claro);
 }
 
 .rodape__contatos-icones {
-  color: black;
+  color: #000;
 }
 
+/* =========================
+   Tema escuro
+   ========================= */
+
+/*
+  Ajustes visuais quando o body recebe data-bs-theme="dark".
+
+  O Bootstrap já altera várias cores automaticamente.
+  Aqui sobrescrevemos alguns elementos personalizados do projeto.
+*/
 [data-bs-theme="dark"] {
-  color: white;
-  .nav-link, 
-  .card-body,
-  .botao-padrao,
-  .offcanvas,
-  .accordion,
-  .rodape__contatos-icones{
-    --bs-nav-link-color: white;
-    --bs-card-color: white;
-    color: white;
-    --bs-offcanvas-color: white;
-    --bs-body-color: white;
-    color: white;
-  }
+  color: #fff;
 }
 
-@media screen and (max-width:768px) {
- 
+[data-bs-theme="dark"] .nav-link,
+[data-bs-theme="dark"] .card-body,
+[data-bs-theme="dark"] .offcanvas,
+[data-bs-theme="dark"] .accordion,
+[data-bs-theme="dark"] .rodape__contatos-icones {
+  color: #fff;
 }
 
+[data-bs-theme="dark"] .nav-link {
+  --bs-nav-link-color: #fff;
+}
 
-@media screen and (max-width:768px) {
+[data-bs-theme="dark"] .card-body {
+  --bs-card-color: #fff;
+}
+
+[data-bs-theme="dark"] .offcanvas {
+  --bs-offcanvas-color: #fff;
+}
+
+[data-bs-theme="dark"] .accordion {
+  --bs-body-color: #fff;
+}
+
+[data-bs-theme="dark"] .botao-padrao {
+  background-color: var(--marrom-claro);
+  color: #000;
+}
+
+[data-bs-theme="dark"] .botao-padrao:hover {
+  background-color: var(--marrom-escuro);
+  color: #fff;
+}
+
+/* =========================
+   Responsividade
+   ========================= */
+
+@media screen and (max-width: 768px) {
+  /*
+    No mobile, esconde a logo desktop.
+  */
   .logo-principal {
     display: none;
     position: absolute;
   }
 
+  /*
+    No mobile, exibe a logo reduzida.
+  */
   .logo-principal__mobile {
     display: block;
     position: static;
   }
 
+  /*
+    Compensa a navbar fixa no topo.
+  */
   .banner {
     margin-top: 4rem;
+    height: 70vw;
+    min-height: 300px;
+
+    /*
+      background-attachment: fixed costuma causar bugs em celulares,
+      principalmente no iOS. Por isso, no mobile usamos scroll.
+    */
+    background-attachment: scroll;
+  }
+
+  /*
+    Ajusta o tamanho da área de título dos banners em telas menores.
+  */
+  .banner-titulo {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
